@@ -1,0 +1,32 @@
+---
+# tasks file for oem-agent-clearstate
+- block:
+  - name: Create blackout
+    shell: ./emctl start blackout "{{ inventory_hostname }}" -nodeLevel
+    args:
+      chdir: "{{ agentLocation }}/agent_inst/bin"
+    ignore_errors: yes
+
+  - name: Stop Agent
+    shell: ./emctl stop agent
+    args:
+      chdir: "{{ agentLocation }}/agent_inst/bin"
+
+  - name: Clearstate Agent
+    shell: ./emctl clearstate agent
+    args:
+      chdir: "{{ agentLocation }}/agent_inst/bin"
+
+  - name: Start Agent
+    shell: ./emctl start agent
+    args:
+      chdir: "{{ agentLocation }}/agent_inst/bin"
+
+  - name: Stop blackout
+    shell: ./emctl stop blackout "{{ inventory_hostname }}"
+    args:
+      chdir: "{{ agentLocation }}/agent_inst/bin"
+    ignore_errors: yes
+
+  become: yes
+  become_user: "{{ agentOwner }}"
