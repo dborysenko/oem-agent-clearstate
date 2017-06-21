@@ -26,13 +26,13 @@ Below example is to discover all hosts in a domain hosted by adminserver.example
     
     - hosts: adminserver
       roles:
-        - get-fmw-domain-structure
+        - dborysenko.get-fmw-domain-structure
 
     - hosts: weblogic, adminsu, singlehosts
       gather_facts: False
       roles:
-        - oem-agent-get-home
-        - oem-agent-clearstate
+        - dborysenko.oem-agent-get-home
+        - dborysenko.oem-agent-clearstate
 
 hosts
 
@@ -71,8 +71,8 @@ Below example is to run clearstate for each host listed in "singlehosts" section
     - hosts: weblogic, adminsu, singlehosts
       gather_facts: False
       roles:
-        - oem-agent-get-home
-        - oem-agent-clearstate
+        - dborysenko.oem-agent-get-home
+        - dborysenko.oem-agent-clearstate
 
 hosts
 
